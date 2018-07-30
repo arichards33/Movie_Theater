@@ -1,0 +1,18 @@
+<% movie_detail = Movie.find_by(id: params["id"]) %>
+<% showing_detail = Showtime.find_by(id: params["start_time"])%>
+<%movie_time = showing_detail.start_time%>
+
+
+<div class="row align-items-center">
+<div class="col">
+    <h1><%= movie_detail.title %> </h1>
+    <p>
+      <%= image_tag movie_detail.movie_poster %>
+    </p>
+    <p><%=movie_detail.description %></p>
+    <%=movie_time%>
+    <p><%= button_to "Buy Tickets", "/purchases/#{movie_detail.id}/#{params[:start_time]}", method: :get%></p>
+
+</div>
+
+</div>

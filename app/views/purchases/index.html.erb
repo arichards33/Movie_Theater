@@ -1,0 +1,37 @@
+
+
+<% movie_detail = Movie.find_by(id: params["id"]) %>
+<% movie_time = Showtime.find_by(id: params["start_time"]) %>
+<h1> <%= movie_detail.title%> </h1>
+<h3>Purchase Tickets</h3>
+<hr>
+<% if movie_time.seats > 0 %>
+  <div class="row">
+    <div class="col-sm-4">
+
+      <%today = Time.zone.today%>
+
+      <%= form_tag "/purchases" do %>
+      <input name="showtime_id" type="hidden" value="<%= movie_time.id%>">
+        <p>Name: <input name="name" type="text" autofocus class="form-control"></p>
+        <p>Email: <input name="email" type="text" autofocus class="form-control"></p>
+        <p>Credit Card: <input name="credit card" type="integer" autofocus class="form-control"></p>
+        <p> CC Expiration: <input name="expiration" type="integer" autofocus class="form-control"></p>
+        <p> Date: <input name="date" placeholder='<%=today%>' type="datetime" autofocus class="form-control"></P>
+        <p> Showtime: <input name="showtime" placeholder='<%=movie_time.start_time%>' type="text" autofocus class="form-control"></P>
+        <label for="tickets">Number of Tickets</label>
+        <%seats_remaining = movie_time.seats_remaining%>
+          <select id="tickets" name="tickets">
+            <%while seats_remaining > 0%>
+              <option value="<%=seats_remaining%>"><%= seats_remaining %></a>
+                <% seats_remaining -= 1%>
+            <%end%>
+          </select>
+        <hr>
+        <p> Total Cost: $<span id="total_cost">300</span></p>
+        <br>
+        <button type="submit" class="btn btn-primary">Purchase</button>
+      <% end %>
+    </div>
+  </div>
+<% end %>

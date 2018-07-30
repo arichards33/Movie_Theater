@@ -1,0 +1,6 @@
+<h1>Thank you for your purchase</h1>
+<hr>
+<p><%=@purchase.tickets%> to <%= @purchase.showtime.movie.title %> at
+  <%=@purchase.showtime.start_time %></p>
+<hr>
+<p> Order Total: $ <%=@purchase.cost%></p>
