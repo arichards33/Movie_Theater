@@ -5,19 +5,19 @@ require 'open-uri'
 #Showtime.delete_all
 
 
-movies = eval(File.read("db/movies.rb"))
+# movies = eval(File.read("db/movies.rb"))
 times = eval(File.read("db/showtimes.rb"))
 
-movies.each do |movie_showing|
-  movie = Movie.new
-  movie.title = movie_showing["title"]
-  movie.movie_poster = movie_showing["movie_poster"]
-  movie.description = movie_showing["description"]
-  movie.rating = movie_showing["rating"]
-  movie.showtime = movie_showing["showtime"]
-
-  movie.save
-end
+# movies.each do |movie_showing|
+#   movie = Movie.new
+#   movie.title = movie_showing["title"]
+#   movie.movie_poster = movie_showing["movie_poster"]
+#   movie.description = movie_showing["description"]
+#   movie.rating = movie_showing["rating"]
+#   movie.showtime = movie_showing["showtime"]
+#
+#   movie.save
+# end
 
 times.each do |showtimes|
 
